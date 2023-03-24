@@ -22,14 +22,14 @@ class Address extends BITBOXAddress {
 
   toCashAddress(address: string, prefix = true, regtest = false): string {
     this._ensureValidAddress(address)
-    const cashAddress: string = utils.toCashAddress(address)
+    const cashAddress: string = utils.toLegacyAddress(address)
     if (prefix) return cashAddress
     return cashAddress.split(":")[1]
   }
 
   toLegacyAddress(address: string): string {
     this._ensureValidAddress(address)
-    const cashAddr: string = utils.toCashAddress(address)
+    const cashAddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.toLegacyAddress(cashAddr)
   }
 
@@ -52,25 +52,25 @@ class Address extends BITBOXAddress {
 
   isMainnetAddress(address: string): boolean {
     this._ensureValidAddress(address)
-    const cashaddr: string = utils.toCashAddress(address)
+    const cashaddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.isMainnetAddress(cashaddr)
   }
 
   isTestnetAddress(address: string): boolean {
     this._ensureValidAddress(address)
-    const cashAddr: string = utils.toCashAddress(address)
+    const cashAddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.isTestnetAddress(cashAddr)
   }
 
   isP2PKHAddress(address: string): boolean {
     this._ensureValidAddress(address)
-    const cashAddr: string = utils.toCashAddress(address)
+    const cashAddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.isP2PKHAddress(cashAddr)
   }
 
   isP2SHAddress(address: string): boolean {
     this._ensureValidAddress(address)
-    const cashAddr: string = utils.toCashAddress(address)
+    const cashAddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.isP2SHAddress(cashAddr)
   }
 
@@ -83,79 +83,95 @@ class Address extends BITBOXAddress {
 
   detectAddressNetwork(address: string): string {
     this._ensureValidAddress(address)
-    const cashAddr: string = utils.toCashAddress(address)
+    const cashAddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.detectAddressNetwork(cashAddr)
   }
 
   detectAddressType(address: string): string {
     this._ensureValidAddress(address)
-    const cashAddr: string = utils.toCashAddress(address)
+    const cashAddr: string = utils.toLegacyAddress(address)
     return bitbox.Address.detectAddressType(cashAddr)
   }
 
   async details(address: string | Array<string>): Promise<Object> {
-    let tmpBITBOX: any = new BITBOX({ restURL: this.restURL })
+    let tmpBITBOX: any
     let network: string
     if (typeof address === "string")
       network = this.detectAddressNetwork(address)
     else network = this.detectAddressNetwork(address[0])
 
+    if (network === "mainnet")
+      tmpBITBOX = new BITBOX({ restURL: "https://rest.zslp.org/v2/" })
+    else tmpBITBOX = new BITBOX({ restURL: "https://trest.zslp.org/v2/" })
+
     if (typeof address === "string") {
-      const cashAddr: string = utils.toCashAddress(address)
+      const cashAddr: string = utils.toLegacyAddress(address)
       return tmpBITBOX.Address.details(cashAddr)
     }
-    address = address.map((address: string) => utils.toCashAddress(address))
+    address = address.map((address: string) => utils.toLegacyAddress(address))
     return tmpBITBOX.Address.details(address)
   }
 
   async utxo(address: string | Array<string>): Promise<Object> {
-    let tmpBITBOX: any = new BITBOX({ restURL: this.restURL })
+    let tmpBITBOX: any
     let network: string
     if (typeof address === "string")
       network = this.detectAddressNetwork(address)
     else network = this.detectAddressNetwork(address[0])
 
+    if (network === "mainnet")
+      tmpBITBOX = new BITBOX({ restURL: "https://rest.zslp.org/v2/" })
+    else tmpBITBOX = new BITBOX({ restURL: "https://trest.zslp.org/v2/" })
+
     if (typeof address === "string") {
-      const cashAddr: string = utils.toCashAddress(address)
+      const cashAddr: string = utils.toLegacyAddress(address)
       return tmpBITBOX.Address.utxo(cashAddr)
     }
-    address = address.map((address: string) => utils.toCashAddress(address))
+    address = address.map((address: string) => utils.toLegacyAddress(address))
     return tmpBITBOX.Address.utxo(address)
   }
 
   async unconfirmed(address: string | Array<string>): Promise<Object> {
-    let tmpBITBOX: any = new BITBOX({ restURL: this.restURL })
+    let tmpBITBOX: any
     let network: string
     if (typeof address === "string")
       network = this.detectAddressNetwork(address)
     else network = this.detectAddressNetwork(address[0])
 
+    if (network === "mainnet")
+      tmpBITBOX = new BITBOX({ restURL: "https://rest.zslp.org/v2/" })
+    else tmpBITBOX = new BITBOX({ restURL: "https://trest.zslp.org/v2/" })
+
     if (typeof address === "string") {
-      const cashAddr: string = utils.toCashAddress(address)
+      const cashAddr: string = utils.toLegacyAddress(address)
       return tmpBITBOX.Address.unconfirmed(cashAddr)
     }
-    address = address.map((address: string) => utils.toCashAddress(address))
+    address = address.map((address: string) => utils.toLegacyAddress(address))
     return tmpBITBOX.Address.unconfirmed(address)
   }
 
   async transactions(address: string | Array<string>): Promise<Object> {
-    let tmpBITBOX: any = new BITBOX({ restURL: this.restURL })
+    let tmpBITBOX: any
     let network: string
     if (typeof address === "string")
       network = this.detectAddressNetwork(address)
     else network = this.detectAddressNetwork(address[0])
 
+    if (network === "mainnet")
+      tmpBITBOX = new BITBOX({ restURL: "https://rest.zslp.org/v2/" })
+    else tmpBITBOX = new BITBOX({ restURL: "https://trest.zslp.org/v2/" })
+
     if (typeof address === "string") {
-      const cashAddr: string = utils.toCashAddress(address)
+      const cashAddr: string = utils.toLegacyAddress(address)
       return tmpBITBOX.Address.transactions(cashAddr)
     }
-    address = address.map((address: string) => utils.toCashAddress(address))
+    address = address.map((address: string) => utils.toLegacyAddress(address))
     return tmpBITBOX.Address.transactions(address)
   }
 
   _ensureValidAddress(address: string): any {
     try {
-      utils.toCashAddress(address)
+      utils.toLegacyAddress(address)
     } catch (err) {
       throw new Error(
         `Invalid BCH address. Double check your address is valid: ${address}`

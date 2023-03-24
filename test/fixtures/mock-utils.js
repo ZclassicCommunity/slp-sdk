@@ -5,43 +5,54 @@
 const mockList = [
   {
     decimals: 0,
-    timestamp: "2019-02-02 00:09:12",
+    timestamp: "2019-04-29 08:59",
+    timestampUnix: 1539218362,
     versionType: 1,
     documentUri: "",
-    symbol: "LVL032",
-    name: "Lode Runner Level 32 Resume",
-    containsBaton: true,
-    id: "3641fc50120b604e4020ab8930f10f687b886db4280fb94a35f25ef4b891bb49",
+    symbol: "WMW",
+    name: "WheresMyWallet",
+    containsBaton: false,
+    id: "8fc284dcbc922f7bb7e2a443dc3af792f52923bba403fcf67ca028c88e89da0e",
     documentHash: null,
-    initialTokenQty: 0,
-    blockCreated: 574388,
-    totalMinted: null,
-    totalBurned: null,
-    circulatingSupply: null,
-    timestampUnix: 1549066152
+    initialTokenQty: 1000,
+    blockCreated: 580336,
+    blockLastActiveSend: 580336,
+    blockLastActiveMint: null,
+    txnsSinceGenesis: 1,
+    validAddresses: 1,
+    totalMinted: 1000,
+    totalBurned: 0,
+    circulatingSupply: 1000,
+    mintingBatonStatus: "NEVER_CREATED"
   },
   {
-    decimals: 8,
-    timestamp: "2019-02-01 23:32:48",
+    decimals: 0,
+    timestamp: "2019-04-29 08:59",
+    timestampUnix: 1539218362,
     versionType: 1,
-    documentUri: "SloppyChikun.cash",
-    symbol: "CHIKUN",
-    name: "Sloppy Chikun",
+    documentUri: "",
+    symbol: "WMW",
+    name: "Where'sMyWallet",
     containsBaton: false,
-    id: "3cc09f707c6ca0c9dcb6b3df6e5df6d6d1e49864fa0948d5f744648f1f2ee865",
+    id: "471d1f33e8a69cf59ce174ce43174feeecdf1f475ccc4cc3705600a5d6d2cd06",
     documentHash: null,
-    initialTokenQty: 84000000,
-    blockCreated: 574387,
-    totalMinted: null,
-    totalBurned: null,
-    circulatingSupply: null,
-    timestampUnix: 1549063968
+    initialTokenQty: 1000,
+    blockCreated: 580336,
+    blockLastActiveSend: 580351,
+    blockLastActiveMint: null,
+    txnsSinceGenesis: 2,
+    validAddresses: 2,
+    totalMinted: 1000,
+    totalBurned: 0,
+    circulatingSupply: 1000,
+    mintingBatonStatus: "NEVER_CREATED"
   }
 ]
 
 const mockToken = {
   decimals: 0,
-  timestamp: "2018-07-06 01:54:35",
+  timestamp: "2018-08-25 01:54",
+  timestampUnix: 1539218362,
   versionType: 1,
   documentUri: "",
   symbol: "USDT",
@@ -51,16 +62,21 @@ const mockToken = {
   documentHash: null,
   initialTokenQty: 10000000000000000,
   blockCreated: 544903,
-  totalMinted: null,
-  totalBurned: null,
-  circulatingSupply: null,
-  timestampUnix: 1530842075
+  blockLastActiveSend: 544905,
+  blockLastActiveMint: null,
+  txnsSinceGenesis: 3,
+  validAddresses: 0,
+  totalMinted: 10000000000000000,
+  totalBurned: 10000000000000000,
+  circulatingSupply: 0,
+  mintingBatonStatus: "NEVER_CREATED"
 }
 
 const mockTokens = [
   {
     decimals: 0,
-    timestamp: "2018-07-06 01:54:35",
+    timestamp: "2018-08-25 01:54",
+    timestampUnix: 1539218362,
     versionType: 1,
     documentUri: "",
     symbol: "USDT",
@@ -70,14 +86,36 @@ const mockTokens = [
     documentHash: null,
     initialTokenQty: 10000000000000000,
     blockCreated: 544903,
-    totalMinted: null,
-    totalBurned: null,
-    circulatingSupply: null,
-    timestampUnix: 1530842075
+    blockLastActiveSend: 544905,
+    blockLastActiveMint: null,
+    txnsSinceGenesis: 3,
+    validAddresses: 0,
+    totalMinted: 10000000000000000,
+    totalBurned: 10000000000000000,
+    circulatingSupply: 0,
+    mintingBatonStatus: "NEVER_CREATED"
   },
   {
-    id: "b3f4f132dc3b9c8c96316346993a8d54d729715147b7b11aa6c8cd909e955313",
-    valid: false
+    decimals: 0,
+    timestamp: "2019-04-29 08:59",
+    timestampUnix: 1539218362,
+    versionType: 1,
+    documentUri: "",
+    symbol: "WMW",
+    name: "Where'sMyWallet",
+    containsBaton: false,
+    id: "471d1f33e8a69cf59ce174ce43174feeecdf1f475ccc4cc3705600a5d6d2cd06",
+    documentHash: null,
+    initialTokenQty: 1000,
+    blockCreated: 580336,
+    blockLastActiveSend: 580351,
+    blockLastActiveMint: null,
+    txnsSinceGenesis: 2,
+    validAddresses: 2,
+    totalMinted: 1000,
+    totalBurned: 0,
+    circulatingSupply: 1000,
+    mintingBatonStatus: "NEVER_CREATED"
   }
 ]
 
@@ -625,141 +663,6 @@ const txDetailsSLPSend = {
   blocktime: 1566227300
 }
 
-const txDetailsSLPGenesisNoBaton = {
-  txid: "497291b8a1dfe69c8daea50677a3d31a5ef0e9484d8bebb610dac64bbc202fb7",
-  hash: "497291b8a1dfe69c8daea50677a3d31a5ef0e9484d8bebb610dac64bbc202fb7",
-  version: 1,
-  size: 285,
-  locktime: 575672,
-  vin: [
-    {
-      txid: "805728012bc3349d1a05dc503aaf389c7a743917d7af6adfb844baff8ff2f89f",
-      vout: 2,
-      scriptSig: {
-        asm:
-          "3045022100e4c0e18d97ea6d24c15d60e4032131e985091dec0d844fe00065cb6852b2cfaa02207b6334f72e1aa70f26a88e0e0bff183966405b59bf3a9eaa89d03155cd155505[ALL|FORKID] 03adb6ee2ccaf17f407704c91aae7327bd12fa81aa1bad63bc1685a9ded76d6f2a",
-        hex:
-          "483045022100e4c0e18d97ea6d24c15d60e4032131e985091dec0d844fe00065cb6852b2cfaa02207b6334f72e1aa70f26a88e0e0bff183966405b59bf3a9eaa89d03155cd155505412103adb6ee2ccaf17f407704c91aae7327bd12fa81aa1bad63bc1685a9ded76d6f2a"
-      },
-      sequence: 4294967294
-    }
-  ],
-  vout: [
-    {
-      value: 0,
-      n: 0,
-      scriptPubKey: {
-        asm:
-          "OP_RETURN 5262419 1 47454e45534953 544f4b2d4348 546f6b796f43617368 0 0 8 0 000775f05a074000",
-        hex:
-          "6a04534c500001010747454e4553495306544f4b2d434809546f6b796f436173684c004c0001084c0008000775f05a074000",
-        type: "nulldata"
-      }
-    },
-    {
-      value: 0.00000546,
-      n: 1,
-      scriptPubKey: {
-        asm:
-          "OP_DUP OP_HASH160 17c068626a1085ab782b94fe5577b67b9168a1d9 OP_EQUALVERIFY OP_CHECKSIG",
-        hex: "76a91417c068626a1085ab782b94fe5577b67b9168a1d988ac",
-        reqSigs: 1,
-        type: "pubkeyhash",
-        addresses: ["bitcoincash:qqtuq6rzdgggt2mc9w20u4thkeaez69pmy6ur897sr"]
-      }
-    },
-    {
-      value: 0.00474263,
-      n: 2,
-      scriptPubKey: {
-        asm:
-          "OP_DUP OP_HASH160 8b3decf88562b3a8037d8e88171e14bff010ea3d OP_EQUALVERIFY OP_CHECKSIG",
-        hex: "76a9148b3decf88562b3a8037d8e88171e14bff010ea3d88ac",
-        reqSigs: 1,
-        type: "pubkeyhash",
-        addresses: ["bitcoincash:qz9nmm8cs43t82qr0k8gs9c7zjllqy82853g26y3tc"]
-      }
-    }
-  ],
-  hex:
-    "01000000019ff8f28fffba44b8df6aafd71739747a9c38af3a50dc051a9d34c32b01285780020000006b483045022100e4c0e18d97ea6d24c15d60e4032131e985091dec0d844fe00065cb6852b2cfaa02207b6334f72e1aa70f26a88e0e0bff183966405b59bf3a9eaa89d03155cd155505412103adb6ee2ccaf17f407704c91aae7327bd12fa81aa1bad63bc1685a9ded76d6f2afeffffff030000000000000000326a04534c500001010747454e4553495306544f4b2d434809546f6b796f436173684c004c0001084c0008000775f05a07400022020000000000001976a91417c068626a1085ab782b94fe5577b67b9168a1d988ac973c0700000000001976a9148b3decf88562b3a8037d8e88171e14bff010ea3d88acb8c80800",
-  blockhash: "0000000000000000003e44676df0c4f80b68aff24bf04823444c0069729631f8",
-  confirmations: 21249,
-  time: 1553714591,
-  blocktime: 1553714591
-}
-
-const txDetailsSLPSendAlt = {
-  txid: "d94357179775425ebc59c93173bd6dc9854095f090a2eb9dcfe9797398bc8eae",
-  hash: "d94357179775425ebc59c93173bd6dc9854095f090a2eb9dcfe9797398bc8eae",
-  version: 2,
-  size: 438,
-  locktime: 0,
-  vin: [
-    {
-      txid: "984a8fc8093e1db5489a8856ab0ecbaef188662535f08de6f87da8622978146f",
-      vout: 0,
-      scriptSig: {
-        asm:
-          "3045022100f3f84a7c0a72e6df55ad8ff4596aae2d040403b38f8054d95ee48f3d554790050220776b0833891e65c52685ce3a498e3ee0aa804a85e9b79f21bb74a367ad88a569[ALL|FORKID] 03440d292d554f524a1a16fab1c4384c82a15aa191b6a25187c03f6ec4db57d61e",
-        hex:
-          "483045022100f3f84a7c0a72e6df55ad8ff4596aae2d040403b38f8054d95ee48f3d554790050220776b0833891e65c52685ce3a498e3ee0aa804a85e9b79f21bb74a367ad88a569412103440d292d554f524a1a16fab1c4384c82a15aa191b6a25187c03f6ec4db57d61e"
-      },
-      sequence: 4294967295
-    },
-    {
-      txid: "164ff37f47a1be6550a81f3d76f3d57e121d82ed04ed8b7bc932e2273141ebbc",
-      vout: 1,
-      scriptSig: {
-        asm:
-          "30440220177d3583516caf6a3d8e99ed9c0a76595a4187d04c575c0f7dab6a6dfa4630c502207fc842e03ca73a2c9d1f9d7406145bb4ea6eb90d1585ea7c4e82491707fadb74[ALL|FORKID] 0252996f42e5908cc6fe5e2df42888a7226f352f2d496e7f9bb17aaf55e41d997b",
-        hex:
-          "4730440220177d3583516caf6a3d8e99ed9c0a76595a4187d04c575c0f7dab6a6dfa4630c502207fc842e03ca73a2c9d1f9d7406145bb4ea6eb90d1585ea7c4e82491707fadb7441210252996f42e5908cc6fe5e2df42888a7226f352f2d496e7f9bb17aaf55e41d997b"
-      },
-      sequence: 4294967295
-    }
-  ],
-  vout: [
-    {
-      value: 0,
-      n: 0,
-      scriptPubKey: {
-        asm:
-          "OP_RETURN 5262419 256 1145980243 73db55368981e4878440637e448d4abe7f661be5c3efdcbcb63bd86a01a76b5a 0000000000000001",
-        hex:
-          "6a04534c50000200010453454e442073db55368981e4878440637e448d4abe7f661be5c3efdcbcb63bd86a01a76b5a080000000000000001",
-        type: "nulldata"
-      }
-    },
-    {
-      value: 0.00000546,
-      n: 1,
-      scriptPubKey: {
-        asm:
-          "OP_DUP OP_HASH160 f037d66efd7235ae4eeb03f666845a7c23ace91a OP_EQUALVERIFY OP_CHECKSIG",
-        hex: "76a914f037d66efd7235ae4eeb03f666845a7c23ace91a88ac",
-        reqSigs: 1,
-        type: "pubkeyhash",
-        addresses: ["bitcoincash:qrcr04nwl4erttjwavplve5ytf7z8t8frg94efy6ts"]
-      }
-    },
-    {
-      value: 0.00047367,
-      n: 2,
-      scriptPubKey: {
-        asm:
-          "OP_DUP OP_HASH160 d5669ba347fd2abe6a06d0310f817d1f1304ba71 OP_EQUALVERIFY OP_CHECKSIG",
-        hex: "76a914d5669ba347fd2abe6a06d0310f817d1f1304ba7188ac",
-        reqSigs: 1,
-        type: "pubkeyhash",
-        addresses: ["bitcoincash:qr2kdxargl7j40n2qmgrzrup0503xp96wyn5ju6p5l"]
-      }
-    }
-  ],
-  hex:
-    "02000000026f14782962a87df8e68df035256688f1aecb0eab56889a48b51d3e09c88f4a98000000006b483045022100f3f84a7c0a72e6df55ad8ff4596aae2d040403b38f8054d95ee48f3d554790050220776b0833891e65c52685ce3a498e3ee0aa804a85e9b79f21bb74a367ad88a569412103440d292d554f524a1a16fab1c4384c82a15aa191b6a25187c03f6ec4db57d61effffffffbceb413127e232c97b8bed04ed821d127ed5f3763d1fa85065bea1477ff34f16010000006a4730440220177d3583516caf6a3d8e99ed9c0a76595a4187d04c575c0f7dab6a6dfa4630c502207fc842e03ca73a2c9d1f9d7406145bb4ea6eb90d1585ea7c4e82491707fadb7441210252996f42e5908cc6fe5e2df42888a7226f352f2d496e7f9bb17aaf55e41d997bffffffff030000000000000000386a04534c50000200010453454e442073db55368981e4878440637e448d4abe7f661be5c3efdcbcb63bd86a01a76b5a08000000000000000122020000000000001976a914f037d66efd7235ae4eeb03f666845a7c23ace91a88ac07b90000000000001976a914d5669ba347fd2abe6a06d0310f817d1f1304ba7188ac00000000"
-}
-
 module.exports = {
   mockList,
   mockToken,
@@ -777,7 +680,5 @@ module.exports = {
   nonSLPTxDetailsWithOpReturn,
   txDetailsSLPGenesis,
   txDetailsSLPMint,
-  txDetailsSLPSend,
-  txDetailsSLPGenesisNoBaton,
-  txDetailsSLPSendAlt
+  txDetailsSLPSend
 }

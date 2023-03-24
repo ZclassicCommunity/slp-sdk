@@ -13,7 +13,7 @@ const repl = require("repl")
 const SLP = require("./lib/SLP")
 const clone = require("git-clone")
 
-program.version("4.13.2", "-v, --version")
+program.version("4.4.1", "-v, --version")
 
 program
   .command("new <name>")
@@ -23,7 +23,7 @@ program
   )
   .option(
     "-r, --restURL <restURL>",
-    "The rest URL to use. default: https://trest.bitcoin.com/v2/"
+    "The rest URL to use. default: https://trest.zslp.org/v2/"
   )
   .option(
     "-e, --environment <environment>",
@@ -39,7 +39,7 @@ program
     let config
     const environment = fetchOption("environment=development", config, options)
     const restURL = fetchOption(
-      "restURL=https://trest.bitcoin.com/v2/",
+      "restURL=https://trest.zslp.org/v2/",
       config,
       options
     )

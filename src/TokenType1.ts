@@ -1,8 +1,3 @@
-/*
-  This library is concerned with the Token Type 1 defined in this specification:
-  https://github.com/simpleledger/slp-specifications/blob/master/slp-token-type-1.md
-*/
-
 // require deps
 // imports
 import { BITBOX } from "bitbox-sdk"
@@ -145,8 +140,6 @@ class TokenType1 {
     )
 
     const tokenInfo: any = await bitboxNetwork.getTokenInformation(tokenId)
-    // console.log(`tokenInfo: ${JSON.stringify(tokenInfo, null, 2)}`)
-
     const tokenDecimals: number = tokenInfo.decimals
     if (!Array.isArray(sendConfig.fundingAddress)) {
       let amount: any = sendConfig.amount
@@ -154,7 +147,6 @@ class TokenType1 {
       const balances: any = await bitboxNetwork.getAllSlpBalancesAndUtxos(
         sendConfig.fundingAddress
       )
-      // console.log(`balances: ${JSON.stringify(balances, null, 2)}`)
 
       if (!Array.isArray(amount)) {
         amount = new BigNumber(amount).times(10 ** tokenDecimals) // Don't forget to account for token precision
@@ -164,19 +156,7 @@ class TokenType1 {
         })
       }
 
-      // console.log(
-      //   `balances.slpTokenUtxos: ${JSON.stringify(
-      //     balances.slpTokenUtxos,
-      //     null,
-      //     2
-      //   )}`
-      // )
       let inputUtxos = balances.slpTokenUtxos[tokenId]
-      // console.log(`inputUtxos: ${JSON.stringify(inputUtxos, null, 2)}`)
-      // console.log(`balances.nonSlpUtxos: ${JSON.stringify(balances.nonSlpUtxos, null, 2)}`)
-
-      if (inputUtxos === undefined)
-        throw new Error(`Could not find any SLP token UTXOs`)
 
       inputUtxos = inputUtxos.concat(balances.nonSlpUtxos)
 
@@ -196,7 +176,6 @@ class TokenType1 {
     const balances: any = await bitboxNetwork.getAllSlpBalancesAndUtxos(
       sendConfig.fundingAddress
     )
-    // console.log(`balances: ${JSON.stringify(balances, null, 2)}`)
 
     // Sign and add input token UTXOs
     const tokenBalances = balances.filter((i: any) => {
@@ -232,10 +211,12 @@ class TokenType1 {
 
     utxos.forEach((txo: any) => {
       if (Array.isArray(sendConfig.fundingAddress)) {
-        sendConfig.fundingAddress.forEach((address: string, index: number) => {
-          if (txo.cashAddress === addy.toCashAddress(address))
-            txo.wif = sendConfig.fundingWif[index]
-        })
+        sendConfig.fundingAddress.forEach(
+          (address: string, index: number) => {
+            if (txo.cashAddress === addy.toCashAddress(address))
+              txo.wif = sendConfig.fundingWif[index]
+          }
+        )
       }
     })
 
@@ -302,8 +283,8 @@ class TokenType1 {
     let tmpBITBOX: any
 
     let restURL: string
-    if (network === "mainnet") restURL = "https://rest.bitcoin.com/v2/"
-    else restURL = "https://trest.bitcoin.com/v2/"
+    if (network === "mainnet") restURL = "https://rest.zslp.org/v2/"
+    else restURL = "https://trest.zslp.org/v2/"
 
     return new BITBOX({ restURL: restURL })
   }
@@ -314,11 +295,8 @@ class TokenType1 {
     // bchChangeReceiverAddress can be either simpleledger or cashAddr format
     // validate fundingAddress format
     // single fundingAddress
-
-    if (config.fundingAddress && !Array.isArray(config.fundingAddress)) {
-      if (!addy.isSLPAddress(config.fundingAddress))
-        throw Error("Token Receiver Address must be simpleledger format")
-    }
+    if (config.fundingAddress && !addy.isSLPAddress(config.fundingAddress))
+      throw Error("Funding Address must be simpleledger format")
 
     // bulk fundingAddress
     if (config.fundingAddress && Array.isArray(config.fundingAddress)) {
@@ -332,11 +310,9 @@ class TokenType1 {
     // single tokenReceiverAddress
     if (
       config.tokenReceiverAddress &&
-      !Array.isArray(config.tokenReceiverAddress)
-    ) {
-      if (!addy.isSLPAddress(config.tokenReceiverAddress))
-        throw Error("Token Receiver Address must be simpleledger format")
-    }
+      !addy.isSLPAddress(config.tokenReceiverAddress)
+    )
+      throw Error("Token Receiver Address must be simpleledger format")
 
     // bulk tokenReceiverAddress
     if (
