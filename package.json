@@ -46,7 +46,7 @@
     "mkdirp": "^0.5.1",
     "node-emoji": "^1.8.1",
     "repl.history": "^0.1.4",
-    "slpjs": "ZSLP/zslpjs#ed515ea07e380d6b5a32c5a1c85feca7d213172e",
+    "slpjs": "ZclassicCommunity/zslpjs#fc4878755e97024f98f6ddc623ff128bba81d428",
     "touch": "^3.1.0"
   },
   "devDependencies": {
